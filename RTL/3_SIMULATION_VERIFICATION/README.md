@@ -2,11 +2,11 @@
 
 Simulator Used: ModelSim 
 
-Input Stimulus: 1010110100110
+Input Stimulus: 1010110100110110
 
-Expected Detections: 4
+Expected Detections: 8
 
-Actual Detections: 4 ✔️ (PASS)
+Actual Detections: 8 ✔️ (PASS)
 
 
 
