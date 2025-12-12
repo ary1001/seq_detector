@@ -1,53 +1,40 @@
-
-set dir real_project_5
-
+# Project settings
+set dir SEQ_DETECTOR
 set design seq_detector
 
-#to preserve all hierarchy, avoids flatten hierarchy
+# Preserve hierarchy
 set_db auto_ungroup none
 
-#Library, hdl file loaction paths
-set_db init_hdl_search_path   "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/pre_syn_files_1/"
+# HDL search path (user-specific paths removed for GitHub)
+set_db init_hdl_search_path   "./pre_syn_files/"
 
-read_mmmc  "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/pre_syn_files_1/mmmc.tcl"
+# MMMC setup
+read_mmmc  "./constraints/mmmc.tcl"
 
-#Global effort levels
+# Synthesis effort levels
 set_db syn_generic_effort high
 set_db syn_map_effort     high
 set_db syn_opt_effort     high
 
-
-#Reading three files
+# Read RTL
 read_hdl $design.v
-
 elaborate  $design  
-
 init_design -top $design
 
-syn_generic 
-
-syn_map 
-
+# Synthesis steps
+syn_generic
+syn_map
 check_design -all
-
-#STA run, then if we want improvement, syn_opt
 syn_opt 
 
+# Reports
 report_timing -lint
+report_timing  > "./reports/sta.rpt"
+report_power   > "./reports/power.rpt"
+report_area    > "./reports/area.rpt"
+report_qor     > "./reports/qor.rpt"
 
-#PPA, sdf reports
-
-write_hdl > "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/synthesized_files_2/seqdet_synth.v"
-
-write_sdc -view {WC_VIEW} > "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/synthesized_files_2/func_synth.sdc"
-
-write_sdf > "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/synthesized_files_2/seqdet.sdf"
-
-report_timing > "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/reports_3/sta.rpt"
-
-report_power  >  "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/reports_3/power.rpt"
-
-report_area > "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/reports_3/area.rpt"
-
-report_qor > "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/$dir/Logic_synthesis/reports_3/qor.rpt"
-
+# Output files
+write_hdl > "./synth_out/${design}_synth.v"
+write_sdc -view {WC_VIEW} > "./synth_out/${design}.sdc"
+write_sdf > "./synth_out/${design}.sdf"
