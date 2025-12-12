@@ -1,6 +1,6 @@
 (DELAYFILE
   (SDFVERSION  "OVI 3.0")
-  (DESIGN      "p4_O_SEQdet")
+  (DESIGN      "seq_detector")
   (DATE        "Wed Oct 15 13:48:51 IST 2025")
   (VENDOR      "Cadence, Inc.")
   (PROGRAM     "Genus(TM) Synthesis Solution")
