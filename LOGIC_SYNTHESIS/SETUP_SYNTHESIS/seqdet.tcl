@@ -5,7 +5,7 @@ set design seq_detector
 # Preserve hierarchy
 set_db auto_ungroup none
 
-# HDL search path (user-specific paths removed for GitHub)
+# HDL search path 
 set_db init_hdl_search_path   "./pre_syn_files/"
 
 # MMMC setup
@@ -38,3 +38,4 @@ report_qor     > "./reports/qor.rpt"
 write_hdl > "./synth_out/${design}_synth.v"
 write_sdc -view {WC_VIEW} > "./synth_out/${design}.sdc"
 write_sdf > "./synth_out/${design}.sdf"
+
