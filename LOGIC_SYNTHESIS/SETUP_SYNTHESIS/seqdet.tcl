@@ -47,3 +47,4 @@ report_timing -lint
 #report_power  >  "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/real_project_5/Logic_synthesis/reports_3/power.rpt"
 
 #report_area > "/afs/iitd.ac.in/user/e/ee/een242857/PRACTICE/real_project_5/Logic_synthesis/reports_3/area.rpt"
+
